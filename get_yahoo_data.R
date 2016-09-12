@@ -8,4 +8,8 @@ raw_vanguard_staples <- TTR::getYahooData('FDAGX', start = '19700101',
                                       end = '20160909',freq = 'daily' )
 
 
+berkshire  <- TTR::getYahooData('BRK-B', start = '19700101',
+                                 end = '20160909',freq = 'daily' )
+
+charts.PerformanceSummary(ROC(berkshire$Close))
 

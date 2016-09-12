@@ -1,5 +1,5 @@
-period <- "::"
-palanca <- 1.3
+period <- "::2007"
+palanca <- 1
 
 div_growth <- raw_vanguard_div_growth[
   endpoints(raw_vanguard_div_growth, on = 'months'), 'Close'
