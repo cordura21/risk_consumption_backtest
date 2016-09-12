@@ -1,5 +1,5 @@
 period <- "::"
-palanca <- 1.3
+palanca <- 1
 
 div_growth <- raw_vanguard_div_growth[
   endpoints(raw_vanguard_div_growth, on = 'months'), 'Close'
@@ -20,12 +20,15 @@ names(snp) <- 'snp'
 # Compare Staples Against S&P ---------------------------------------------
 
 compared <- merge(staples,snp, join = 'inner')
+cape_zones <- merge(compared,cape.xts, join ='inner')
+cape_zones <- cape_zones[cape_zones$CAPE < 16,]
+
 compared <- ROC(compared) 
 compared[,1] <- compared[,1] * palanca
 
 chart.CumReturns(compared[period,])
 
-charts.RollingPerformance(compared[period,], width = 24 )
+charts.RollingPerformance(compared[period,], width = 60 )
 
 chart.RollingRegression(compared[period,1], compared[period,2],width = 12,
                         attribute = 'Beta')
