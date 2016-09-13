@@ -1,4 +1,6 @@
+
 period <- "::"
+
 palanca <- 1
 
 div_growth <- raw_vanguard_div_growth[
