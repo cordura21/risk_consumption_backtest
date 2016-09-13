@@ -6,11 +6,16 @@ beta.alloc <- data.frame(strats = c( 'macromodel',
                                      'value relativo',
                                      'situaciones especiales'),
                          allocation = rep(.20,5),
-                         expected_return = c(.065,.07,.10,.085,.10),
                          allocated_time = rep(1,5))
 
-xxx <- read.csv('ML Corporate Index.csv', stringsAsFactors = FALSE) %>% tbl_df() %>%
-  filter(BAMLCC7A01015YTRIV !=0) %>%
-  mutate(observation_date = as.Date(observation_date)) %>%
-  mutate(ML_Corporate = ROC(BAMLCC7A01015YTRIV,1)) %>%
-  filter(ML_Corporate != 0)
+
+beta.alloc$expected_return = c(.065,.065,.105,.088,.08)
+beta.alloc$allocated_time <- c(1,.7,.5,.5,.20)
+#beta.alloc$allocated_time <- c(1,1,1,1,1)
+
+beta.expected.return <- sum(beta.alloc$allocation * beta.alloc$expected_return)
+time_in_market <- sum(beta.alloc$allocated_time) / length(beta.alloc$strats)
+beta.expected.return <- beta.expected.return * time_in_market + 
+  beta.alloc$expected_return[1] * (1 - time_in_market)
+print(paste("Retorno:",beta.expected.return * 100))
+print(paste("Tiempo Invertido:",time_in_market ))
