@@ -1,0 +1,2 @@
+load("/Users/andresp/Documents/R Projects/risk_consumption_backtest/all_prices.RDS")
+load("/Users/andresp/Documents/R Projects/risk_consumption_backtest/all_prices-5.RDS")
